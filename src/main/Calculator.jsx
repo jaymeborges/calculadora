@@ -15,7 +15,7 @@ const initialState = {
 
 export default class Calculator extends Component {
 
-    state = { ...initialState}
+    state = { ...initialState }
 
 constructor(props)  {
     super(props)
@@ -31,18 +31,19 @@ constructor(props)  {
 
     setOperation(operation) {
         if (this.state.current === 0) {
-            this.setState({ operation, current: 1, clearDisplay: true})
-        }else{
+            this.setState({ operation, current: 1, clearDisplay: true })
+        } else {
             const equals = operation === '='
             const currentOperation = this.state.operation
         }
 
            const values = [...this.state.values]
-           try{
-            values[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`)
-           } catch(e){
+           try {
+           values[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`)
+           } catch(e) {
                 values[0] = this.state.values[0]
            }
+           
            values[1] = 0
            
            this.setState({
@@ -63,7 +64,7 @@ constructor(props)  {
             || this.state.clearDisplay
         const currentValue = clearDisplay ? '' : this.state.displayValue  
         const displayValue = currentValue + n
-        this.setState({displayValue, clearDisplay: false})
+        this.setState({ displayValue, clearDisplay: false })
 
         if (n !== '.') {
             const i = this.state.current
@@ -93,7 +94,7 @@ constructor(props)  {
                 <Button label="3"  click={this.addDigit}/> 
                 <Button label="+"  click={this.setOperation} operation/> 
                 <Button label="0"  click={this.addDigit} double /> 
-                <Button label="."  click={this.setOperation} operation/> 
+                <Button label="."  click={this.addDigit} operation/> 
                 <Button label="="  click={this.setOperation} operation/> 
                
             </div>
